@@ -4,6 +4,8 @@ import com.collatty.chess.engine.Alliance;
 import com.collatty.chess.engine.board.Board;
 import com.collatty.chess.engine.board.BoardUtils;
 import com.collatty.chess.engine.board.Move;
+import com.collatty.chess.engine.board.Move.AttackMove;
+import com.collatty.chess.engine.board.Move.MajorMove;
 import com.collatty.chess.engine.board.Tile;
 import com.google.common.collect.ImmutableList;
 
@@ -22,7 +24,7 @@ public class Knight extends Piece{
     }
 
     @Override
-    public Collection<Move> calculateLegalMoves(Board board) {
+    public Collection<Move> calculateLegalMoves(final Board board) {
 
 
         final List<Move> legalMoves = new ArrayList<Move>();
@@ -41,13 +43,13 @@ public class Knight extends Piece{
                 final Tile candididateDestinationTile = board.getTile(candidateDestinationCoordinate);
 
                 if (!candididateDestinationTile.isTileOccupied()) {
-                    legalMoves.add(new Move());
+                    legalMoves.add(new MajorMove(board, this, candidateDestinationCoordinate));
                 } else {
                     final Piece pieceAtDestination = candididateDestinationTile.getPiece();
                     final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
 
                     if (this.pieceAlliance != pieceAlliance) {
-                        legalMoves.add(new Move());
+                        legalMoves.add(new AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                     }
                 }
             }
