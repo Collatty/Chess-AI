@@ -13,15 +13,18 @@ public class WhitePlayer extends Player{
         super(board, whiteStandardLegalMoves, blackStandardLegalMoves);
     }
 
+    @Override
     public Collection<Piece> getActivePieces() {
         return this.board.getWhitePieces();
     }
 
+    @Override
     public Alliance getAlliance() {
         return Alliance.WHITE;
     }
 
+    @Override
     public Player getOpponent() {
-        return null;
+        return this.board.blackPlayer();
     }
 }

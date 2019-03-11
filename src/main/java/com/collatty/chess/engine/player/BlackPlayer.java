@@ -5,6 +5,7 @@ import com.collatty.chess.engine.board.Board;
 import com.collatty.chess.engine.board.Move;
 import com.collatty.chess.engine.pieces.Piece;
 
+import javax.annotation.OverridingMethodsMustInvokeSuper;
 import java.util.Collection;
 
 public class BlackPlayer extends Player{
@@ -13,15 +14,18 @@ public class BlackPlayer extends Player{
         super(board, blackStandardLegalMoves, whiteStandardLegalMoves);
     }
 
+    @Override
     public Collection<Piece> getActivePieces() {
         return this.board.getBlackPieces();
     }
 
+    @Override
     public Alliance getAlliance() {
         return Alliance.BLACK;
     }
 
+    @Override
     public Player getOpponent() {
-        return null;
+        return this.board.whitePlayer();
     }
 }

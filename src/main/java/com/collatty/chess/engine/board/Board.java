@@ -3,6 +3,7 @@ package com.collatty.chess.engine.board;
 import com.collatty.chess.engine.Alliance;
 import com.collatty.chess.engine.pieces.*;
 import com.collatty.chess.engine.player.BlackPlayer;
+import com.collatty.chess.engine.player.Player;
 import com.collatty.chess.engine.player.WhitePlayer;
 import com.google.common.collect.ImmutableList;
 
@@ -15,7 +16,9 @@ public class Board {
     private final Collection<Piece> blackPieces;
 
     private final WhitePlayer whitePlayer;
-    private final BlackPlayer blackplayer;
+    private final BlackPlayer blackPlayer;
+
+    private final Player currentPlayer;
 
 
 
@@ -28,10 +31,13 @@ public class Board {
         final Collection<Move> blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
 
         this.whitePlayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
-        this.blackplayer = new BlackPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+        this.blackPlayer = new BlackPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+        this.currentPlayer = null;
+
 
 
     }
+
 
     @Override
     public String toString() {
@@ -44,6 +50,18 @@ public class Board {
             }
         }
         return builder.toString();
+    }
+
+    public Player whitePlayer() {
+        return this.whitePlayer;
+    }
+
+    public Player blackPlayer() {
+        return this.blackPlayer;
+    }
+
+    public Player currentPlayer() {
+        return this.currentPlayer;
     }
 
     public Collection<Piece> getBlackPieces(){
