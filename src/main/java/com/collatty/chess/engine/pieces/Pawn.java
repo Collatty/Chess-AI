@@ -16,8 +16,8 @@ public class Pawn extends Piece{
     public final static int[] CANDIDATE_MOVE_COORDINATE = {8, 16, 7, 9};
 
 
-    Pawn(final int piecePosition, final Alliance pieceAlliance) {
-        super(piecePosition, pieceAlliance);
+    public Pawn(final Alliance pieceAlliance, final int piecePosition) {
+        super(PieceType.PAWN, piecePosition, pieceAlliance);
     }
 
     @Override
@@ -65,14 +65,23 @@ public class Pawn extends Piece{
                     !((BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite() ||
                             (BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack())) )) {
                 final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
-                if (this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
-                    // TODO: Attacking into pawn promotion
-                    legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate,
-                            pieceOnCandidate));
+                if (pieceOnCandidate == null) {
+
+                } else {
+                    if (this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
+                        // TODO: Attacking into pawn promotion
+                        legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate,
+                                pieceOnCandidate));
+                    }
                 }
             }
 
         }
         return ImmutableList.copyOf(legalMoves);
+    }
+
+    @Override
+    public String toString() {
+        return PieceType.PAWN.toString();
     }
 }
