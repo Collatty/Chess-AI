@@ -75,10 +75,18 @@ public abstract class Piece {
             public boolean isKing() {
                 return false;
             }
+
+            public boolean isRook() {
+                return false;
+            }
         },
 
         KNIGHT("N") {
             public boolean isKing() {
+                return false;
+            }
+
+            public boolean isRook() {
                 return false;
             }
         },
@@ -86,20 +94,36 @@ public abstract class Piece {
             public boolean isKing() {
                 return false;
             }
+
+            public boolean isRook() {
+                return false;
+            }
         },
         ROOK("R") {
             public boolean isKing() {
                 return false;
+            }
+
+            public boolean isRook() {
+                return true;
             }
         },
         QUEEN("Q") {
             public boolean isKing() {
                 return false;
             }
+
+            public boolean isRook() {
+                return false;
+            }
         },
         KING("K") {
             public boolean isKing() {
                 return true;
+            }
+
+            public boolean isRook() {
+                return false;
             }
         };
 
@@ -115,6 +139,8 @@ public abstract class Piece {
         }
 
         public abstract boolean isKing();
+        public abstract boolean isRook();
+
     }
 
 
