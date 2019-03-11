@@ -1,5 +1,6 @@
 package com.collatty.chess.engine.board;
 
+import com.collatty.chess.engine.board.Board.Builder;
 import com.collatty.chess.engine.pieces.Piece;
 
 public abstract class Move {
@@ -19,6 +20,10 @@ public abstract class Move {
         return this.destinationCoordinate;
     }
 
+    public Piece getMovedPiece() {
+        return this.movedPiece;
+    }
+
 
     public abstract Board execute();
 
@@ -28,8 +33,27 @@ public abstract class Move {
             super(board, movedPiece, destinationCoordinate);
         }
 
+        @Override
         public Board execute() {
-            return null;
+
+            final Builder builder = new Builder();
+
+            for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
+
+                //TODO hashcode and equals for pieces
+                if (!this.movedPiece.equals(piece)) {
+                    builder.setPiece(piece);
+                }
+            }
+
+            for (final Piece piece : this.board.currentPlayer().getOpponent().getActivePieces()) {
+                builder.setPiece(piece);
+            }
+            // move the moved piece TODO
+            builder.setPiece(this.movedPiece.movePiece(this));
+            builder.setMoveMaker(this.board.currentPlayer().getOpponent().getAlliance());
+
+            return builder.build();
         }
     }
 

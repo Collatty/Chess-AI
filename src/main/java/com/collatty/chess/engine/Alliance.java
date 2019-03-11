@@ -1,6 +1,11 @@
 package com.collatty.chess.engine;
 
+import com.collatty.chess.engine.player.BlackPlayer;
+import com.collatty.chess.engine.player.Player;
+import com.collatty.chess.engine.player.WhitePlayer;
+
 public enum Alliance {
+
     WHITE{
         public int getDirection() {
             return -1;
@@ -14,6 +19,10 @@ public enum Alliance {
         @Override
         public boolean isWhite() {
             return true;
+        }
+
+        public Player choosePlayer(final WhitePlayer whitePlayer, final BlackPlayer blackPlayer) {
+            return whitePlayer;
         }
     },
     BLACK {
@@ -30,10 +39,16 @@ public enum Alliance {
         public boolean isWhite() {
             return false;
         }
+
+        public Player choosePlayer(final WhitePlayer whitePlayer, final BlackPlayer blackPlayer) {
+            return blackPlayer;
+        }
     };
 
     public abstract int getDirection();
 
     public abstract boolean isBlack();
     public abstract boolean isWhite();
+
+    public abstract Player choosePlayer(WhitePlayer whitePlayer, BlackPlayer blackPlayer);
 }
