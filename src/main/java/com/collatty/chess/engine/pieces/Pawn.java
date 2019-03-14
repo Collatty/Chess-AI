@@ -5,6 +5,8 @@ import com.collatty.chess.engine.board.Board;
 import com.collatty.chess.engine.board.BoardUtils;
 import com.collatty.chess.engine.board.Move;
 import com.collatty.chess.engine.board.Move.MajorMove;
+import com.collatty.chess.engine.board.Move.PawnAttackMove;
+import com.collatty.chess.engine.board.Move.PawnJump;
 import com.google.common.collect.ImmutableList;
 
 import java.util.ArrayList;
@@ -50,7 +52,7 @@ public class Pawn extends Piece{
                 final int behindCandidateDestinationCoordinate =
                         this.piecePosition + (this.pieceAlliance.getDirection()*8);
                 if (!board.getTile(behindCandidateDestinationCoordinate).isTileOccupied() && !board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
-                    legalMoves.add(new MajorMove(board, this, candidateDestinationCoordinate));
+                    legalMoves.add(new PawnJump(board, this, candidateDestinationCoordinate));
 
                 }
 
@@ -61,7 +63,7 @@ public class Pawn extends Piece{
                     final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
                     if(this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
                         // TODO: Attacking into pawn promotion
-                        legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate,
+                        legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate,
                                 pieceOnCandidate));
                     }
                 }
@@ -76,7 +78,7 @@ public class Pawn extends Piece{
                 } else {
                     if (this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
                         // TODO: Attacking into pawn promotion
-                        legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate,
+                        legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate,
                                 pieceOnCandidate));
                     }
                 }
