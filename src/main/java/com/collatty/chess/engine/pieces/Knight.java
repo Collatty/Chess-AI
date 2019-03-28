@@ -5,6 +5,7 @@ import com.collatty.chess.engine.board.Board;
 import com.collatty.chess.engine.board.BoardUtils;
 import com.collatty.chess.engine.board.Move;
 import com.collatty.chess.engine.board.Move.AttackMove;
+import com.collatty.chess.engine.board.Move.MajorAttackMove;
 import com.collatty.chess.engine.board.Move.MajorMove;
 import com.collatty.chess.engine.board.Tile;
 import com.google.common.collect.ImmutableList;
@@ -53,7 +54,8 @@ public class Knight extends Piece{
                     final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
 
                     if (this.pieceAlliance != pieceAlliance) {
-                        legalMoves.add(new AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
+                        legalMoves.add(new MajorAttackMove(board, this, candidateDestinationCoordinate,
+                                pieceAtDestination));
                     }
                 }
             }

@@ -118,6 +118,7 @@ public class GameHistoryPanel extends JPanel {
             final Row currentRow;
             if (this.values.size() <= row) {
                 currentRow = new Row();
+                this.values.add(currentRow);
             } else {
                 currentRow = this.values.get(row);
             }
