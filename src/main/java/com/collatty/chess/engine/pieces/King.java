@@ -16,12 +16,37 @@ public class King extends Piece{
     private final static int[] CANDIDATE_MOVE_COORDINATE = { -9, -8, -7, -1, 1, 7, 8, 9 };
 
 
-    public King(final Alliance pieceAlliance, final int piecePosition) {
-        super(PieceType.KING, piecePosition, pieceAlliance, true);
+
+    private final boolean kingSideCastleCapable;
+    private final boolean queenSideCastleCapable;
+    private final boolean isCastled;
+
+    public boolean isCastled() {
+        return isCastled;
     }
 
-    public King(final Alliance pieceAlliance, final int piecePosition, final boolean isFirstMove) {
+    public King(final Alliance pieceAlliance, final int piecePosition, final boolean kingSideCastledCapable,
+                final boolean queenSideCastleCapable) {
+        super(PieceType.KING, piecePosition, pieceAlliance, true);
+        this.kingSideCastleCapable = kingSideCastledCapable;
+        this.queenSideCastleCapable = queenSideCastleCapable;
+        this.isCastled = false;
+    }
+
+    public King(final Alliance pieceAlliance, final int piecePosition, final boolean isFirstMove,
+                final boolean isCasteld, final boolean kingSideCastleCapable, final boolean queenSideCastleCapable) {
         super(PieceType.KING, piecePosition, pieceAlliance, isFirstMove);
+        this.isCastled = isCasteld;
+        this.kingSideCastleCapable = kingSideCastleCapable;
+        this.queenSideCastleCapable = queenSideCastleCapable;
+    }
+
+    public boolean isKingSideCastleCapable() {
+        return kingSideCastleCapable;
+    }
+
+    public boolean isQueenSideCastleCapable() {
+        return queenSideCastleCapable;
     }
 
 
@@ -61,7 +86,8 @@ public class King extends Piece{
 
     @Override
     public King movePiece(Move move) {
-        return new King(move.getMovedPiece().getPieceAlliance(), move.getDestinationCoordinate());
+        return new King(move.getMovedPiece().getPieceAlliance(), move.getDestinationCoordinate(), false,
+                move.isCastlingMove(), false, false);
     }
 
     @Override

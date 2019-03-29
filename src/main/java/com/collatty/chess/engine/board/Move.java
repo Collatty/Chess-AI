@@ -127,7 +127,8 @@ public abstract class Move {
                 builder.setPiece(piece);
             }
             builder.setPiece(this.promotedPawn.getPromotionPiece().movePiece(this));
-            builder.setMoveMaker(pawnMovedBoard.currentPlayer().getOpponent().getAlliance());
+            builder.setMoveMaker(pawnMovedBoard.currentPlayer().getAlliance());
+
 
             return builder.build();
         }
@@ -144,7 +145,7 @@ public abstract class Move {
 
         @Override
         public String toString() {
-            return "";
+            return "PROM";
         }
 
         @Override
