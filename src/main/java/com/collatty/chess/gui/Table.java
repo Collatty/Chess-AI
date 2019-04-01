@@ -408,9 +408,9 @@ public class Table extends Observable {
             if(board.getTile(this.tileId).isTileOccupied()){
                 try {
                     final BufferedImage image =
-                            ImageIO.read(new File(defaultPieceImagesPath + board.getTile(this.tileId)
+                            ImageIO.read(ResourceLoader.load(defaultPieceImagesPath + board.getTile(this.tileId)
                                     .getPiece().getPieceAlliance()
-                                    .toString().substring(0,1) + board.getTile(this.tileId).toString() + ".gif"));
+                                    .toString().substring(0,1) + board.getTile(this.tileId).toString().toUpperCase() + ".gif"));
                     add(new JLabel(new ImageIcon(image)));
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -447,7 +447,7 @@ public class Table extends Observable {
                 for (final Move move : pieceLegalMoves(board)){
                     if (move.getDestinationCoordinate() == this.tileId) {
                         try {
-                            add(new JLabel(new ImageIcon(ImageIO.read(new File("art/misc/green_dot.png")))));
+                            add(new JLabel(new ImageIcon(ImageIO.read(ResourceLoader.load("art/misc/green_dot.png")))));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

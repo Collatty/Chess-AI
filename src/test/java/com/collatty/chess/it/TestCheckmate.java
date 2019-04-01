@@ -53,7 +53,6 @@ public class TestCheckmate {
         assertTrue(t4.getMoveStatus().isDone());
 
         assertTrue(t4.getTransitionBoard().currentPlayer().isInCheckMate());
-        System.out.println(aiMove.toString() + bestMove.toString());
         assertEquals(aiMove, bestMove);
 
     }

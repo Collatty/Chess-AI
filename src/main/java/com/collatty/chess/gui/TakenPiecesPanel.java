@@ -75,8 +75,8 @@ public class TakenPiecesPanel extends JPanel {
 
         for (final Piece takenPiece : whiteTakenPieces) {
             try {
-                final BufferedImage image = ImageIO.read(new File("art/pieceImages/holywarriors/" +
-                        takenPiece.getPieceAlliance().toString().substring(0,1) + takenPiece.toString() +".gif"));
+                final BufferedImage image = ImageIO.read(ResourceLoader.load("/art/pieceImages/holywarriors/" +
+                        takenPiece.getPieceAlliance().toString().substring(0,1) + takenPiece.toString().toUpperCase() +".gif"));
                 final ImageIcon icon = new ImageIcon(image);
                 final JLabel imageLabel =
                         new JLabel(new ImageIcon(icon.getImage().getScaledInstance(icon.getIconWidth()-15,
@@ -89,8 +89,8 @@ public class TakenPiecesPanel extends JPanel {
         }
         for (final Piece takenPiece : blackTakenPieces) {
             try {
-                final BufferedImage image = ImageIO.read(new File("art/pieceImages/holywarriors/" +
-                        takenPiece.getPieceAlliance().toString().substring(0,1) + takenPiece.toString()  +".gif"));
+                final BufferedImage image = ImageIO.read(ResourceLoader.load("/art/pieceImages/holywarriors/" +
+                        takenPiece.getPieceAlliance().toString().substring(0,1) + takenPiece.toString().toUpperCase()  +".gif"));
                 final ImageIcon icon = new ImageIcon(image);
                 final JLabel imageLabel =
                         new JLabel(new ImageIcon(icon.getImage().getScaledInstance(icon.getIconWidth()-15,
