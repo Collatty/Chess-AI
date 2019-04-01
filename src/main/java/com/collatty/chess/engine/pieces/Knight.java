@@ -83,7 +83,7 @@ public class Knight extends Piece{
     }
 
     private static boolean isSeventhColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.SEVENTH_COLUMN[currentPosition] && (candidateOffset == -10 || candidateOffset == 6);
+        return BoardUtils.SEVENTH_COLUMN[currentPosition] && (candidateOffset == 10 || candidateOffset == -6);
     }
 
     private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
