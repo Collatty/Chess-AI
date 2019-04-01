@@ -4,6 +4,8 @@ Note that regardless of how you run it, the GUI is a bit buggy. You should click
 in order to see when you have actually selected a piece to move. Also note that the move highlighter itself is a bit 
 buggy. it does for instance not highligh castling as a legal move, although you will be able to perform the move.
 
+To play the AI, click options and choose the player you want to be played by the computer. 
+
 #### Alternative 1:
 
 Clone my repository and open in your favorite editor. Run the main class `Chess`found at 
