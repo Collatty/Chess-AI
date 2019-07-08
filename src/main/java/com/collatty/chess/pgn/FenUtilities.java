@@ -170,7 +170,7 @@ public class FenUtilities {
             return BoardUtils.getPositionAtCoordinate(enPassantPawn.getPiecePosition() + 8*enPassantPawn.getPieceAlliance().getOppositeDirection());
 
         }
-        return null;
+        return "-";
     }
 
     private static String calculateCurrentCastleText(final Board board) {

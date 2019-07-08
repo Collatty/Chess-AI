@@ -76,4 +76,8 @@ public class WhitePlayer extends Player{
 
         return ImmutableList.copyOf(kingCastles);
     }
+
+    public String toString() {
+        return "White";
+    }
 }
